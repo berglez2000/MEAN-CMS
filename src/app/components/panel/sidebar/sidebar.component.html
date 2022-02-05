@@ -5,7 +5,12 @@
   <div class="line mt-3 mb-3"></div>
   <ul class="nav nav-pills mb-auto flex-column">
     <li class="nav-item" *ngFor="let nav of navItems">
-      <a class="nav-link" [routerLink]="nav.route" routerLinkActive="active">
+      <a
+        class="nav-link"
+        [routerLink]="nav.route"
+        routerLinkActive="active"
+        [routerLinkActiveOptions]="{ exact: true }"
+      >
         <fa-icon [icon]="nav.icon"></fa-icon> {{ nav.label }}
       </a>
     </li>
