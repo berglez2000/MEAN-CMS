@@ -12,6 +12,9 @@ import { SpinnerComponent } from './components/global/spinner/spinner.component'
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { SidebarComponent } from './components/panel/sidebar/sidebar.component';
 import { DashboardComponent } from './components/panel/dashboard/dashboard.component';
+import { PagesComponent } from './pages/admin/pages/pages.component';
+import { MediaComponent } from './pages/admin/media/media.component';
+import { PostsComponent } from './pages/admin/posts/posts.component';
 
 @NgModule({
   declarations: [
@@ -22,7 +25,10 @@ import { DashboardComponent } from './components/panel/dashboard/dashboard.compo
     AlertComponent,
     SpinnerComponent,
     SidebarComponent,
-    DashboardComponent
+    DashboardComponent,
+    PagesComponent,
+    MediaComponent,
+    PostsComponent
   ],
   imports: [
     BrowserModule,
