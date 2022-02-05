@@ -11,6 +11,7 @@ import { AlertComponent } from './components/global/alert/alert.component';
 import { SpinnerComponent } from './components/global/spinner/spinner.component';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { SidebarComponent } from './components/panel/sidebar/sidebar.component';
+import { DashboardComponent } from './components/panel/dashboard/dashboard.component';
 
 @NgModule({
   declarations: [
@@ -20,7 +21,8 @@ import { SidebarComponent } from './components/panel/sidebar/sidebar.component';
     LoginComponent,
     AlertComponent,
     SpinnerComponent,
-    SidebarComponent
+    SidebarComponent,
+    DashboardComponent
   ],
   imports: [
     BrowserModule,

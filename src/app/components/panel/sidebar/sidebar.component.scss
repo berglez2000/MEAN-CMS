@@ -11,4 +11,19 @@
     height: 1px;
     background-color: rgb(82, 82, 82);
   }
+
+  ul {
+    li {
+      a,
+      i {
+        color: #fff;
+      }
+
+      a {
+        fa-icon {
+          padding-right: 10px;
+        }
+      }
+    }
+  }
 }
