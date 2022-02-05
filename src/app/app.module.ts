@@ -6,17 +6,21 @@ import { AppComponent } from './app.component';
 import { AdminComponent } from './pages/admin/admin.component';
 import { MainComponent } from './pages/main/main.component';
 import { LoginComponent } from './pages/admin/login/login.component';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { AlertComponent } from './components/global/alert/alert.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     AdminComponent,
     MainComponent,
-    LoginComponent
+    LoginComponent,
+    AlertComponent
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    NgbModule
   ],
   providers: [],
   bootstrap: [AppComponent]
