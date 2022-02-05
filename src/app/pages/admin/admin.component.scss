@@ -2,17 +2,11 @@
   min-height: 100vh;
   display: flex;
 
-  .sidebar {
-    width: 100%;
-    max-width: 280px;
+  .sidebar-parent {
+    width: 280px;
 
-    h3 {
-      letter-spacing: 6px;
-    }
-
-    .line {
-      height: 1px;
-      background-color: rgb(82, 82, 82);
+    app-sidebar {
+      width: 100%;
     }
   }
 }

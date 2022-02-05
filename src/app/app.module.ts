@@ -10,6 +10,7 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { AlertComponent } from './components/global/alert/alert.component';
 import { SpinnerComponent } from './components/global/spinner/spinner.component';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { SidebarComponent } from './components/panel/sidebar/sidebar.component';
 
 @NgModule({
   declarations: [
@@ -18,7 +19,8 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
     MainComponent,
     LoginComponent,
     AlertComponent,
-    SpinnerComponent
+    SpinnerComponent,
+    SidebarComponent
   ],
   imports: [
     BrowserModule,
