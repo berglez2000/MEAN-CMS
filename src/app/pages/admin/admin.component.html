@@ -1,1 +1,20 @@
-<p>admin works!</p>
+<div class="admin">
+  <div class="sidebar d-flex flex-column flex-shrink-0 p-3 text-white bg-dark">
+    <div class="sidebar-header">
+      <h3 class="text-center">LOGO</h3>
+    </div>
+    <div class="line mt-3 mb-3"></div>
+    <ul class="nav nav-pills mb-auto flex-column">
+      <li class="nav-item">
+        <a class="nav-link" routerLink="/admin">
+          <fa-icon [icon]="faColumns"></fa-icon> Dashboard
+        </a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" routerLink="/admin/pages">
+          <fa-icon [icon]="faHome"></fa-icon> Pages
+        </a>
+      </li>
+    </ul>
+  </div>
+</div>
