@@ -1,4 +1,8 @@
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import {
+  HttpClient,
+  HttpErrorResponse,
+  HttpHeaders,
+} from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, Subject } from 'rxjs';
 import { ServerResponse } from 'src/app/models/ServerResponse';
@@ -29,16 +33,20 @@ export class AuthService {
         authHeaders
       );
     }
-    this.http
-      .get<ServerResponse>(this.apiUrl, httpOptions)
-      .subscribe((res: ServerResponse) => {
+    this.http.get<ServerResponse>(this.apiUrl, httpOptions).subscribe(
+      (res: ServerResponse) => {
         if (res.success) {
           this.isAuth = true;
-        } else {
-          this.isAuth = false;
         }
         this.authSubject.next(this.isAuth);
-      });
+      },
+      (error: HttpErrorResponse) => {
+        if (error.status === 401) {
+          this.isAuth = false;
+          this.authSubject.next(this.isAuth);
+        }
+      }
+    );
   }
 
   getIsAuth(): boolean {

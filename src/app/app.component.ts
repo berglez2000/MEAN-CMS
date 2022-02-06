@@ -22,6 +22,10 @@ export class AppComponent implements OnInit, OnDestroy {
     this.authService.authStatusListener().subscribe((isAuth: boolean) => {
       this.isAuth = isAuth;
       this.isLoaded = true;
+
+      if (!this.isAuth) {
+        this.router.navigate(['/admin/login']);
+      }
     });
   }
 
