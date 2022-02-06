@@ -1,15 +1,18 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-
+import { FormsModule } from '@angular/forms';
 import { AppRoutingModule } from './app-routing.module';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { HttpClientModule } from '@angular/common/http';
+
+// Components
 import { AppComponent } from './app.component';
 import { AdminComponent } from './pages/admin/admin.component';
 import { MainComponent } from './pages/main/main.component';
 import { LoginComponent } from './pages/admin/login/login.component';
-import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { AlertComponent } from './components/global/alert/alert.component';
 import { SpinnerComponent } from './components/global/spinner/spinner.component';
-import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { SidebarComponent } from './components/panel/sidebar/sidebar.component';
 import { DashboardComponent } from './components/panel/dashboard/dashboard.component';
 import { PagesComponent } from './pages/admin/pages/pages.component';
@@ -30,15 +33,17 @@ import { PageItemComponent } from './components/global/cards/page-item/page-item
     PagesComponent,
     MediaComponent,
     PostsComponent,
-    PageItemComponent
+    PageItemComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     NgbModule,
-    FontAwesomeModule
+    FontAwesomeModule,
+    FormsModule,
+    HttpClientModule,
   ],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}

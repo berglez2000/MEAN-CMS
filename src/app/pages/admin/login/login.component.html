@@ -4,7 +4,7 @@
       <h3 class="card-title">Login</h3>
     </div>
     <div class="card-body">
-      <form>
+      <form (submit)="onSubmit()">
         <div class="mb-3">
           <label for="username" class="form-label">Username</label>
           <input
@@ -12,6 +12,8 @@
             class="form-control"
             id="username"
             aria-describedby="username"
+            name="username"
+            [(ngModel)]="username"
           />
         </div>
         <div class="mb-3">
@@ -21,6 +23,8 @@
             class="form-control"
             id="password"
             aria-describedby="password"
+            name="password"
+            [(ngModel)]="password"
           />
         </div>
         <button type="submit" class="btn btn-primary">Login</button>
