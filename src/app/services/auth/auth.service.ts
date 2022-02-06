@@ -37,13 +37,17 @@ export class AuthService {
         } else {
           this.isAuth = false;
         }
-
         this.authSubject.next(this.isAuth);
       });
   }
 
   getIsAuth(): boolean {
     return this.isAuth;
+  }
+
+  changeAuth(isAuth: boolean): void {
+    this.isAuth = isAuth;
+    this.authSubject.next(this.isAuth);
   }
 
   authStatusListener(): Observable<boolean> {

@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { Alert } from 'src/app/models/Alert';
 import { ServerResponse } from 'src/app/models/ServerResponse';
 import { User } from 'src/app/models/User';
@@ -18,7 +19,8 @@ export class LoginComponent implements OnInit {
   constructor(
     private alertService: AlertService,
     private usersService: UsersService,
-    private authService: AuthService
+    private authService: AuthService,
+    private router: Router
   ) {}
 
   ngOnInit(): void {}
@@ -50,6 +52,10 @@ export class LoginComponent implements OnInit {
           this.alertService.addAlert(alert);
 
           this.authService.storeToken(res.jwt);
+          this.authService.changeAuth(true);
+          setTimeout(() => {
+            this.router.navigate(['/admin']);
+          }, 2000);
         }
       },
       (error) => {
