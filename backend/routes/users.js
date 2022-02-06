@@ -8,6 +8,10 @@ const saltRounds = 10;
 const secretKey =
   "Tai vanhakin lypsaisi tuo jostakin. Hartioilla en se ei mennessaan ai pysahtyvan sisimpansa vastapaata. Loydetty et kerralla poydalla jo kirkolla antaapas. Pannaan konsuli puskisi te ehdotan en on. Uteliaina annettava tyrskahti he ja. Vieraankin minullekin kerrallaan en et suurtakaan kaupunkien on on. He penkille kurkkuun vierasta takaisin on.";
 
+router.get("/", checkAuth, (req, res) => {
+  res.status(200).json({ success: true, msg: "Token verified" });
+});
+
 router.post("/register", checkAuth, (req, res) => {
   bcrypt.genSalt(saltRounds, (err, salt) => {
     if (err) return res.json(err);

@@ -1,1 +1,4 @@
-<router-outlet></router-outlet>
+<div class="app" *ngIf="isLoaded">
+  <router-outlet></router-outlet>
+</div>
+<div class="loader" *ngIf="!isLoaded"><app-spinner></app-spinner></div>
