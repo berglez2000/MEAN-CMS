@@ -1,4 +1,5 @@
 const express = require("express");
+const checkAuth = require("../middleware/check-auth");
 const Page = require("../models/Page");
 const router = express.Router();
 
@@ -11,7 +12,7 @@ router.get("/", async (req, res) => {
   }
 });
 
-router.post("/", (req, res) => {
+router.post("/", checkAuth, (req, res) => {
   new Page({ title: req.body.title, content: req.body.content })
     .save()
     .then(() => {
@@ -31,7 +32,7 @@ router.get("/:id", async (req, res) => {
   }
 });
 
-router.delete("/:id", async (req, res) => {
+router.delete("/:id", checkAuth, async (req, res) => {
   try {
     const page = await Page.deleteOne({ _id: req.params.id });
     res.status(201).json({ success: true, msg: "Page deleted successfully" });

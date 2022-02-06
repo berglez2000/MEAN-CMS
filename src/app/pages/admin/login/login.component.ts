@@ -3,6 +3,7 @@ import { Alert } from 'src/app/models/Alert';
 import { ServerResponse } from 'src/app/models/ServerResponse';
 import { User } from 'src/app/models/User';
 import { AlertService } from 'src/app/services/alert/alert.service';
+import { AuthService } from 'src/app/services/auth/auth.service';
 import { UsersService } from 'src/app/services/users/users.service';
 
 @Component({
@@ -16,7 +17,8 @@ export class LoginComponent implements OnInit {
 
   constructor(
     private alertService: AlertService,
-    private usersService: UsersService
+    private usersService: UsersService,
+    private authService: AuthService
   ) {}
 
   ngOnInit(): void {}
@@ -46,6 +48,8 @@ export class LoginComponent implements OnInit {
             2000
           );
           this.alertService.addAlert(alert);
+
+          this.authService.storeToken(res.jwt);
         }
       },
       (error) => {
