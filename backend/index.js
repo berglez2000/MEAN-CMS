@@ -2,6 +2,7 @@ const express = require("express");
 const cors = require("cors");
 const mongoose = require("mongoose");
 const pages = require("./routes/pages");
+const users = require("./routes/users");
 
 const app = express();
 
@@ -24,6 +25,9 @@ const port = process.env.port || 5000;
 
 // Pages Middleware
 app.use("/api/pages", pages);
+
+// Users Middleware
+app.use("/api/users", users);
 
 app.get("/", (req, res) => {
   res.status(200).json({ status: 200, success: true });
