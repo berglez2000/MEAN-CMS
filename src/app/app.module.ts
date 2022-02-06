@@ -15,6 +15,7 @@ import { DashboardComponent } from './components/panel/dashboard/dashboard.compo
 import { PagesComponent } from './pages/admin/pages/pages.component';
 import { MediaComponent } from './pages/admin/media/media.component';
 import { PostsComponent } from './pages/admin/posts/posts.component';
+import { PageItemComponent } from './components/global/cards/page-item/page-item.component';
 
 @NgModule({
   declarations: [
@@ -28,7 +29,8 @@ import { PostsComponent } from './pages/admin/posts/posts.component';
     DashboardComponent,
     PagesComponent,
     MediaComponent,
-    PostsComponent
+    PostsComponent,
+    PageItemComponent
   ],
   imports: [
     BrowserModule,
