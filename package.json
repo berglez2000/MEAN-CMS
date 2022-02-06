@@ -6,7 +6,8 @@
     "start": "ng serve",
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
-    "test": "ng test"
+    "test": "ng test",
+    "dev": "nodemon ./backend/index.js"
   },
   "private": true,
   "dependencies": {
@@ -29,6 +30,7 @@
     "cors": "^2.8.5",
     "express": "^4.17.2",
     "mongoose": "^6.2.0",
+    "mongoose-unique-validator": "^3.0.0",
     "nodemon": "^2.0.15",
     "rxjs": "~7.4.0",
     "tslib": "^2.3.0",

@@ -1,6 +1,7 @@
 const express = require("express");
 const cors = require("cors");
 const mongoose = require("mongoose");
+const pages = require("./routes/pages");
 
 const app = express();
 
@@ -20,6 +21,13 @@ app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
 
 const port = process.env.port || 5000;
+
+// Pages Middleware
+app.use("/api/pages", pages);
+
+app.get("/", (req, res) => {
+  res.status(200).json({ status: 200, success: true });
+});
 
 app.listen(port, () => {
   console.log(`Server running on port ${port}`);
