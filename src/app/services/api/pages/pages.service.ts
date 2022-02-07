@@ -1,6 +1,6 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import { Observable, Subject } from 'rxjs';
 import { Page, PageObject } from 'src/app/models/Page';
 import { ServerResponse } from 'src/app/models/ServerResponse';
 import { AuthService } from '../../auth/auth.service';
@@ -17,6 +17,7 @@ let httpOptions = {
 export class PagesService {
   private apiUrl: string = 'http://localhost:5000/api/pages/';
   private token: any;
+  private deletePageSubject = new Subject<any>();
 
   constructor(private http: HttpClient, private authService: AuthService) {}
 
@@ -53,6 +54,24 @@ export class PagesService {
       );
     }
     return this.http.patch<ServerResponse>(url, page, httpOptions);
+  }
+
+  deletePage(id: any): Observable<ServerResponse> {
+    const url: string = this.apiUrl + id;
+    if (!this.token) {
+      this.token = this.authService.getToken();
+      const authString = `Bearer ${this.token}`;
+      httpOptions.headers = httpOptions.headers.append(
+        'Authorization',
+        authString
+      );
+    }
+    this.deletePageSubject.next(id);
+    return this.http.delete<ServerResponse>(url, httpOptions);
+  }
+
+  onDeletePage(): Observable<any> {
+    return this.deletePageSubject.asObservable();
   }
 
   stringToSlug(str: string): string {

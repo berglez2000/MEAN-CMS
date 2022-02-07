@@ -22,6 +22,12 @@ export class PagesComponent implements OnInit, OnDestroy {
         this.pages = pages.pages;
         this.isLoading = false;
       });
+
+    this.subscription = this.pagesService
+      .onDeletePage()
+      .subscribe((id: any) => {
+        this.pages = this.pages.filter((page) => page._id !== id);
+      });
   }
 
   ngOnDestroy(): void {
