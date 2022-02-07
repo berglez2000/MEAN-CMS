@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnDestroy, OnInit } from '@angular/core';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { Subscription } from 'rxjs';
 import { Alert } from 'src/app/models/Alert';
@@ -12,7 +12,7 @@ import { PagesService } from 'src/app/services/api/pages/pages.service';
   templateUrl: './page-item.component.html',
   styleUrls: ['./page-item.component.scss'],
 })
-export class PageItemComponent implements OnInit {
+export class PageItemComponent implements OnInit, OnDestroy {
   private subscription: Subscription = new Subscription();
   @Input() page!: Page;
 
@@ -33,7 +33,7 @@ export class PageItemComponent implements OnInit {
   }
 
   onDelete(): void {
-    this.pagesService
+    this.subscription = this.pagesService
       .deletePage(this.page._id)
       .subscribe((res: ServerResponse) => {
         if (res.success) {
@@ -46,5 +46,9 @@ export class PageItemComponent implements OnInit {
         }
       });
     this.modalService.dismissAll();
+  }
+
+  ngOnDestroy(): void {
+    this.subscription.unsubscribe();
   }
 }

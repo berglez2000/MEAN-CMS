@@ -3,6 +3,7 @@ const cors = require("cors");
 const mongoose = require("mongoose");
 const pages = require("./routes/pages");
 const users = require("./routes/users");
+const media = require("./routes/media");
 
 const app = express();
 
@@ -28,6 +29,9 @@ app.use("/api/pages", pages);
 
 // Users Middleware
 app.use("/api/users", users);
+
+// Media Middleware
+app.use("/api/media/", media);
 
 app.get("/", (req, res) => {
   res.status(200).json({ status: 200, success: true });
