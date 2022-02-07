@@ -13,7 +13,11 @@ router.get("/", async (req, res) => {
 });
 
 router.post("/", checkAuth, (req, res) => {
-  new Page({ title: req.body.title, content: req.body.content })
+  new Page({
+    title: req.body.title,
+    content: req.body.content,
+    slug: req.body.slug,
+  })
     .save()
     .then(() => {
       res.status(201).json({ success: true, msg: "Page added successfully" });

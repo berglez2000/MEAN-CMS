@@ -14,7 +14,10 @@
       <div class="pages">
         <div class="page-list" *ngIf="!isLoading">
           <strong *ngIf="pages.length == 0">No pages</strong>
-          <app-page-item *ngFor="let page of pages"></app-page-item>
+          <app-page-item
+            *ngFor="let page of pages"
+            [page]="page"
+          ></app-page-item>
         </div>
         <div
           class="loader d-flex justify-content-center mt-3"

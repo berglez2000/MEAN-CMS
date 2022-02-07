@@ -1,7 +1,9 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { PageObject } from 'src/app/models/Page';
+import { Page, PageObject } from 'src/app/models/Page';
+import { ServerResponse } from 'src/app/models/ServerResponse';
+import { AuthService } from '../../auth/auth.service';
 
 let httpOptions = {
   headers: new HttpHeaders({
@@ -14,11 +16,24 @@ let httpOptions = {
 })
 export class PagesService {
   private apiUrl: string = 'http://localhost:5000/api/pages/';
+  private token: any;
 
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient, private authService: AuthService) {}
 
   getPages(): Observable<PageObject> {
     return this.http.get<PageObject>(this.apiUrl, httpOptions);
+  }
+
+  createPage(page: Page): Observable<ServerResponse> {
+    if (!this.token) {
+      this.token = this.authService.getToken();
+      const authString = `Bearer ${this.token}`;
+      httpOptions.headers = httpOptions.headers.append(
+        'Authorization',
+        authString
+      );
+    }
+    return this.http.post<ServerResponse>(this.apiUrl, page, httpOptions);
   }
 
   stringToSlug(str: string): string {

@@ -10,6 +10,11 @@ const PageSchema = mongoose.Schema({
   content: {
     type: String,
   },
+  slug: {
+    type: String,
+    required: true,
+    unique: true,
+  },
 });
 
 module.exports = mongoose.model("Page", PageSchema);

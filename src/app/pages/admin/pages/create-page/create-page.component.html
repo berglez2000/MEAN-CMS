@@ -37,6 +37,12 @@
               </form>
             </div>
           </div>
+          <div
+            class="loader d-flex justify-content-center mt-3"
+            *ngIf="isLoading"
+          >
+            <app-spinner></app-spinner>
+          </div>
           <app-alert></app-alert>
         </div>
       </div>
