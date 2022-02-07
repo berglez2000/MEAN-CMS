@@ -6,13 +6,21 @@
     <div class="col">
       <div class="upper d-flex justify-content-between">
         <h3>Pages</h3>
-        <button class="btn btn-primary">Add Page</button>
+        <button class="btn btn-primary" routerLink="/admin/pages/create-page">
+          Add Page
+        </button>
       </div>
       <hr />
       <div class="pages">
         <div class="page-list" *ngIf="!isLoading">
           <strong *ngIf="pages.length == 0">No pages</strong>
           <app-page-item *ngFor="let page of pages"></app-page-item>
+        </div>
+        <div
+          class="loader d-flex justify-content-center mt-3"
+          *ngIf="isLoading"
+        >
+          <app-spinner></app-spinner>
         </div>
       </div>
     </div>
