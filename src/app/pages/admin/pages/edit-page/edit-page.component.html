@@ -1,1 +1,53 @@
-<p>edit-page works!</p>
+<div class="admin">
+  <div class="d-flex sidebar-parent">
+    <app-sidebar></app-sidebar>
+  </div>
+  <div class="right mt-3">
+    <div class="col">
+      <div class="upper d-flex justify-content-between">
+        <h3 class="pages-title" routerLink="/admin/pages/">Pages</h3>
+        <button class="btn btn-primary" (click)="onSubmit()" *ngIf="pageLoaded">
+          Save Page
+        </button>
+      </div>
+      <hr />
+      <div class="pages">
+        <div class="edit-page" *ngIf="pageLoaded">
+          <div class="card">
+            <div class="card-body">
+              <form>
+                <div class="mb-3">
+                  <label for="title" class="form-label">Page Title</label>
+                  <input
+                    type="text"
+                    class="form-control"
+                    id="title"
+                    name="title"
+                    [(ngModel)]="title"
+                  />
+                </div>
+                <div class="mb-3">
+                  <label for="content" class="form-label">Page Content</label>
+                  <textarea
+                    class="form-control"
+                    id="content"
+                    rows="4"
+                    name="content"
+                    [(ngModel)]="content"
+                  ></textarea>
+                </div>
+              </form>
+            </div>
+          </div>
+          <div
+            class="loader d-flex justify-content-center mt-3"
+            *ngIf="isLoading"
+          >
+            <app-spinner></app-spinner>
+          </div>
+          <app-alert></app-alert>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -30,7 +30,24 @@ router.post("/", checkAuth, (req, res) => {
 router.get("/:id", async (req, res) => {
   try {
     const page = await Page.findOne({ _id: req.params.id });
-    res.status(200).json({ success: true, page: page });
+    res.status(200).json(page);
+  } catch (err) {
+    res.status(404).json({ success: false, msg: err });
+  }
+});
+
+router.patch("/:id", checkAuth, async (req, res) => {
+  const page = {
+    title: req.body.title,
+    content: req.body.content,
+    slug: req.body.slug,
+  };
+  try {
+    const updatedPage = await Page.updateOne(
+      { _id: req.params.id },
+      { $set: page }
+    );
+    res.status(200).json({ success: true, msg: "Page updated successfully" });
   } catch (err) {
     res.status(404).json({ success: false, msg: err });
   }

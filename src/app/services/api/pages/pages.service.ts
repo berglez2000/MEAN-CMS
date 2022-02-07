@@ -41,6 +41,20 @@ export class PagesService {
     return this.http.post<ServerResponse>(this.apiUrl, page, httpOptions);
   }
 
+  updatePage(page: Page): Observable<ServerResponse> {
+    const url: string = this.apiUrl + page._id;
+    console.log(url);
+    if (!this.token) {
+      this.token = this.authService.getToken();
+      const authString = `Bearer ${this.token}`;
+      httpOptions.headers = httpOptions.headers.append(
+        'Authorization',
+        authString
+      );
+    }
+    return this.http.patch<ServerResponse>(url, page, httpOptions);
+  }
+
   stringToSlug(str: string): string {
     str = str.replace(/^\s+|\s+$/g, '');
     str = str.toLowerCase();
