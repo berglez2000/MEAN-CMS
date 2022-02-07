@@ -1,6 +1,6 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Subscription } from 'rxjs';
-import { Page } from 'src/app/models/Page';
+import { Page, PageObject } from 'src/app/models/Page';
 import { PagesService } from 'src/app/services/api/pages/pages.service';
 
 @Component({
@@ -10,6 +10,7 @@ import { PagesService } from 'src/app/services/api/pages/pages.service';
 })
 export class PagesComponent implements OnInit, OnDestroy {
   pages: Page[] = [];
+  isLoading: boolean = true;
   private subscription: Subscription = new Subscription();
 
   constructor(private pagesService: PagesService) {}
@@ -17,8 +18,9 @@ export class PagesComponent implements OnInit, OnDestroy {
   ngOnInit(): void {
     this.subscription = this.pagesService
       .getPages()
-      .subscribe((pages: Page[]) => {
-        this.pages = pages;
+      .subscribe((pages: PageObject) => {
+        this.pages = pages.pages;
+        this.isLoading = false;
       });
   }
 

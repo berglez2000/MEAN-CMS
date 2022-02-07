@@ -10,7 +10,10 @@
       </div>
       <hr />
       <div class="pages">
-        <app-page-item></app-page-item>
+        <div class="page-list" *ngIf="!isLoading">
+          <strong *ngIf="pages.length == 0">No pages</strong>
+          <app-page-item *ngFor="let page of pages"></app-page-item>
+        </div>
       </div>
     </div>
   </div>
