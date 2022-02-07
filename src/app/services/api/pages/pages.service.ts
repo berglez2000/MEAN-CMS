@@ -24,6 +24,11 @@ export class PagesService {
     return this.http.get<PageObject>(this.apiUrl, httpOptions);
   }
 
+  getPage(id: any): Observable<Page> {
+    const url: string = this.apiUrl + id;
+    return this.http.get<Page>(url);
+  }
+
   createPage(page: Page): Observable<ServerResponse> {
     if (!this.token) {
       this.token = this.authService.getToken();

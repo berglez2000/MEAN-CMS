@@ -20,6 +20,7 @@ import { MediaComponent } from './pages/admin/media/media.component';
 import { PostsComponent } from './pages/admin/posts/posts.component';
 import { PageItemComponent } from './components/global/cards/page-item/page-item.component';
 import { CreatePageComponent } from './pages/admin/pages/create-page/create-page.component';
+import { EditPageComponent } from './pages/admin/pages/edit-page/edit-page.component';
 
 @NgModule({
   declarations: [
@@ -36,6 +37,7 @@ import { CreatePageComponent } from './pages/admin/pages/create-page/create-page
     PostsComponent,
     PageItemComponent,
     CreatePageComponent,
+    EditPageComponent,
   ],
   imports: [
     BrowserModule,
