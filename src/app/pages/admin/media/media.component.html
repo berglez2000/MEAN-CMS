@@ -6,7 +6,16 @@
     <div class="col">
       <div class="upper d-flex justify-content-between">
         <h3 class="pages-title" routerLink="/admin/pages/">Media</h3>
-        <button class="btn btn-primary">Add Media</button>
+        <form>
+          <div>
+            <input
+              (change)="onChange($event)"
+              class="btn btn-primary"
+              type="file"
+              id="formFile"
+            />
+          </div>
+        </form>
       </div>
       <hr />
       <div class="media">

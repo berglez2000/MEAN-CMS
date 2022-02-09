@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, EventEmitter } from '@angular/core';
+import { MediaService } from 'src/app/services/api/media/media.service';
 
 @Component({
   selector: 'app-media',
@@ -6,7 +7,17 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./media.component.scss'],
 })
 export class MediaComponent implements OnInit {
-  constructor() {}
+  constructor(private mediaService: MediaService) {}
 
   ngOnInit(): void {}
+
+  onChange(event: Event): void {
+    const target = event.target as HTMLInputElement;
+    if (target.files && target.files.length > 0) {
+      const image: File = target.files[0];
+      this.mediaService.uploadSingle(image).subscribe((res: any) => {
+        console.log(res);
+      });
+    }
+  }
 }

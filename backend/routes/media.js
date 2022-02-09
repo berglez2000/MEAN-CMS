@@ -1,6 +1,8 @@
 const express = require("express");
 const router = express.Router();
 const multer = require("multer");
+const checkAuth = require("../middleware/check-auth");
+const Media = require("../models/Media");
 
 const fileStorageEngine = multer.diskStorage({
   destination: (req, file, cb) => {
@@ -13,12 +15,26 @@ const fileStorageEngine = multer.diskStorage({
 
 const upload = multer({ storage: fileStorageEngine });
 
-router.get("/", (req, res) => {
-  res.json({ success: true, msg: "We are on media" });
+router.get("/", async (req, res) => {
+  try {
+    const images = await Media.find();
+    res.status(200).json({ images: images });
+  } catch (err) {
+    res.status(400).json(err);
+  }
 });
 
-router.post("/single", upload.single("image"), (req, res) => {
-  res.status(201).json({ success: true, msg: "Image upload success" });
+router.post("/single", checkAuth, upload.single("image"), async (req, res) => {
+  try {
+    const baseUrl = `${req.protocol}://${req.headers.host}/uploads/`;
+    const file = new Media({
+      url: baseUrl + req.file.filename,
+    });
+    const savedFile = await file.save();
+    res.status(201).json({ success: true, file: savedFile });
+  } catch (err) {
+    res.status(400).json(err);
+  }
 });
 
 router.use("/", express.static("uploads"));
