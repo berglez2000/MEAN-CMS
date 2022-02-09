@@ -27,11 +27,10 @@ router.get("/", async (req, res) => {
 router.post("/single", checkAuth, upload.single("image"), async (req, res) => {
   try {
     const baseUrl = `${req.protocol}://${req.headers.host}/uploads/`;
-    const file = new Media({
+    const file = await new Media({
       url: baseUrl + req.file.filename,
-    });
-    const savedFile = await file.save();
-    res.status(201).json({ success: true, file: savedFile });
+    }).save();
+    res.status(201).json(file);
   } catch (err) {
     res.status(400).json(err);
   }
