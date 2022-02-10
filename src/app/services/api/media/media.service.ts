@@ -1,7 +1,8 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import { Observable, Subject } from 'rxjs';
 import { Image, Images } from 'src/app/models/Image';
+import { ServerResponse } from 'src/app/models/ServerResponse';
 import { AuthService } from '../../auth/auth.service';
 
 let httpOptions = {
@@ -13,7 +14,7 @@ let httpOptions = {
 })
 export class MediaService {
   private token: any;
-
+  private imageSubject = new Subject<Image>();
   private apiUrl: string = 'http://localhost:5000/api/media/';
 
   constructor(private http: HttpClient, private authService: AuthService) {}
@@ -31,6 +32,27 @@ export class MediaService {
       );
     }
     return this.http.post(url, formData, httpOptions);
+  }
+
+  deleteImage(id: any): Observable<ServerResponse> {
+    const url: string = this.apiUrl + id;
+    if (!this.token) {
+      this.token = this.authService.getToken();
+      const authHeaders: string = `Bearer ${this.token}`;
+      httpOptions.headers = httpOptions.headers.append(
+        'Authorization',
+        authHeaders
+      );
+    }
+    return this.http.delete<ServerResponse>(url, httpOptions);
+  }
+
+  addImage(image: Image): void {
+    this.imageSubject.next(image);
+  }
+
+  onAddImage(): Observable<Image> {
+    return this.imageSubject.asObservable();
   }
 
   getImages(): Observable<Images> {

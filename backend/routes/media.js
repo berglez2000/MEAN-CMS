@@ -29,10 +29,20 @@ router.post("/single", checkAuth, upload.single("image"), async (req, res) => {
     const baseUrl = `${req.protocol}://${req.headers.host}/uploads/`;
     const file = await new Media({
       url: baseUrl + req.file.filename,
+      filename: req.file.filename,
     }).save();
     res.status(201).json(file);
   } catch (err) {
     res.status(400).json(err);
+  }
+});
+
+router.delete("/:id/:filename", checkAuth, async (req, res) => {
+  try {
+    await Media.deleteOne({ _id: req.params.id });
+    res.status(201).json({ success: true, msg: "Image deleted successfully" });
+  } catch (err) {
+    res.status(404).json(err);
   }
 });
 

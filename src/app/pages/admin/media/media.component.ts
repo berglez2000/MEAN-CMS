@@ -1,4 +1,5 @@
 import { Component, OnInit, EventEmitter } from '@angular/core';
+import { Image } from 'src/app/models/Image';
 import { MediaService } from 'src/app/services/api/media/media.service';
 
 @Component({
@@ -15,8 +16,8 @@ export class MediaComponent implements OnInit {
     const target = event.target as HTMLInputElement;
     if (target.files && target.files.length > 0) {
       const image: File = target.files[0];
-      this.mediaService.uploadSingle(image).subscribe((res: any) => {
-        console.log(res);
+      this.mediaService.uploadSingle(image).subscribe((resImg: Image) => {
+        this.mediaService.addImage(resImg);
       });
     }
   }

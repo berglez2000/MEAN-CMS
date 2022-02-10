@@ -26,6 +26,13 @@ export class ImagesComponent implements OnInit, OnDestroy {
         this.images.forEach((image) => (image.checked = false));
         this.isLoaded = true;
       });
+
+    this.subscription = this.mediaService
+      .onAddImage()
+      .subscribe((image: Image) => {
+        image.checked = false;
+        this.images.push(image);
+      });
   }
 
   onClick(image: Image) {
