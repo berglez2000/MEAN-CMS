@@ -1,0 +1,29 @@
+$primary: #0d6efd;
+
+.images-parent {
+  .images-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, 200px);
+    grid-gap: 1rem;
+    .image-item {
+      width: 200px;
+      height: 200px;
+      background-repeat: no-repeat;
+      background-size: cover;
+      background-position: center;
+      cursor: pointer;
+      border-width: 5px !important;
+
+      &.checked {
+        border-color: $primary !important;
+      }
+    }
+  }
+
+  .delete-parent {
+    height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+}

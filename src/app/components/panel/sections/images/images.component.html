@@ -4,4 +4,20 @@
 <div class="loader mt-4 d-flex justify-content-center w-100" *ngIf="!isLoaded">
   <app-spinner></app-spinner>
 </div>
-<div class="images-list" *ngIf="isLoaded && images.length > 0"></div>
+<div class="images-parent">
+  <div class="delete-parent">
+    <button class="btn btn-danger" *ngIf="showDeleteImageButton">
+      Delete {{ pluralImages ? "Images" : "Image" }}
+    </button>
+  </div>
+  <div class="images-list" *ngIf="isLoaded && images.length > 0">
+    <div
+      *ngFor="let image of images; index as i"
+      class="image-item {{
+        image.checked ? 'checked' : ''
+      }} border border-3 border-secondary"
+      [ngStyle]="{ 'background-image': 'url(' + image.url + ')' }"
+      (click)="onClick(image)"
+    ></div>
+  </div>
+</div>
