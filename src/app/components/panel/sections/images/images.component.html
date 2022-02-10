@@ -1,0 +1,7 @@
+<div *ngIf="isLoaded && images.length == 0">
+  <strong>No images</strong>
+</div>
+<div class="loader mt-4 d-flex justify-content-center w-100" *ngIf="!isLoaded">
+  <app-spinner></app-spinner>
+</div>
+<div class="images-list" *ngIf="isLoaded && images.length > 0"></div>

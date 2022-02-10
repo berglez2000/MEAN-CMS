@@ -1,6 +1,7 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
+import { Image, Images } from 'src/app/models/Image';
 import { AuthService } from '../../auth/auth.service';
 
 let httpOptions = {
@@ -30,5 +31,9 @@ export class MediaService {
       );
     }
     return this.http.post(url, formData, httpOptions);
+  }
+
+  getImages(): Observable<Images> {
+    return this.http.get<Images>(this.apiUrl);
   }
 }
