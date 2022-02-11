@@ -4,6 +4,7 @@ const mongoose = require("mongoose");
 const pages = require("./routes/pages");
 const users = require("./routes/users");
 const media = require("./routes/media");
+const posts = require("./routes/posts");
 const path = require("path");
 
 const app = express();
@@ -34,6 +35,9 @@ app.use("/api/users", users);
 // Media Middleware
 app.use("/api/media/", media);
 app.use("/uploads", express.static(path.join(__dirname, "/uploads")));
+
+// Posts Middleware
+app.use("/api/posts", posts);
 
 app.get("/", (req, res) => {
   res.status(200).json({ status: 200, success: true });
