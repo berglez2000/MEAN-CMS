@@ -1,6 +1,9 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Subscription } from 'rxjs';
+import { Alert } from 'src/app/models/Alert';
 import { Image, Images } from 'src/app/models/Image';
+import { ServerResponse } from 'src/app/models/ServerResponse';
+import { AlertService } from 'src/app/services/alert/alert.service';
 import { MediaService } from 'src/app/services/api/media/media.service';
 
 @Component({
@@ -16,7 +19,10 @@ export class ImagesComponent implements OnInit, OnDestroy {
   pluralImages: boolean = false;
   isLoaded: boolean = false;
 
-  constructor(private mediaService: MediaService) {}
+  constructor(
+    private mediaService: MediaService,
+    private alertService: AlertService
+  ) {}
 
   ngOnInit(): void {
     this.subscription = this.mediaService
@@ -55,9 +61,27 @@ export class ImagesComponent implements OnInit, OnDestroy {
   }
 
   onDelete(): void {
-    this.checkedImages.forEach((image) => {});
+    const isPlural: boolean = this.checkedImages.length >= 2;
+    this.checkedImages.forEach((image) => {
+      this.mediaService
+        .deleteImage(image._id, image.filename)
+        .subscribe((res: ServerResponse) => {
+          if (res.success) {
+            this.images = this.images.filter((img) => img._id !== image._id);
+            const alert: Alert = {
+              type: 'success',
+              text: `Image${isPlural ? 's' : ''} deleted successfully`,
+              time: 1500,
+            };
+
+            this.alertService.addAlert(alert);
+          }
+        });
+    });
 
     this.checkedImages = [];
+    this.showDeleteImageButton = false;
+    this.pluralImages = false;
   }
 
   ngOnDestroy(): void {

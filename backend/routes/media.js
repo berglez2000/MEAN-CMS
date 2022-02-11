@@ -3,6 +3,8 @@ const router = express.Router();
 const multer = require("multer");
 const checkAuth = require("../middleware/check-auth");
 const Media = require("../models/Media");
+const fs = require("fs");
+const path = require("path");
 
 const fileStorageEngine = multer.diskStorage({
   destination: (req, file, cb) => {
@@ -40,6 +42,7 @@ router.post("/single", checkAuth, upload.single("image"), async (req, res) => {
 router.delete("/:id/:filename", checkAuth, async (req, res) => {
   try {
     await Media.deleteOne({ _id: req.params.id });
+    fs.unlinkSync(`./backend/uploads/${req.params.filename}`);
     res.status(201).json({ success: true, msg: "Image deleted successfully" });
   } catch (err) {
     res.status(404).json(err);
