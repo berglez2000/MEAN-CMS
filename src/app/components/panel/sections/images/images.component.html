@@ -6,7 +6,11 @@
 </div>
 <div class="images-parent">
   <div class="delete-parent">
-    <button class="btn btn-danger" *ngIf="showDeleteImageButton">
+    <button
+      class="btn btn-danger"
+      *ngIf="showDeleteImageButton"
+      (click)="onDelete()"
+    >
       Delete {{ pluralImages ? "Images" : "Image" }}
     </button>
   </div>
@@ -20,4 +24,5 @@
       (click)="onClick(image)"
     ></div>
   </div>
+  <app-alert></app-alert>
 </div>

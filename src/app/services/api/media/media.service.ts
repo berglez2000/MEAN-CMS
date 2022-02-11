@@ -34,8 +34,8 @@ export class MediaService {
     return this.http.post(url, formData, httpOptions);
   }
 
-  deleteImage(id: any): Observable<ServerResponse> {
-    const url: string = this.apiUrl + id;
+  deleteImage(id: any, filename: string): Observable<ServerResponse> {
+    const url: string = `${this.apiUrl + id}/${filename}`;
     if (!this.token) {
       this.token = this.authService.getToken();
       const authHeaders: string = `Bearer ${this.token}`;

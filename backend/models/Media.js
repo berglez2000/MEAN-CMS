@@ -7,6 +7,11 @@ const MeidaSchema = new mongoose.Schema({
     unique: true,
     required: true,
   },
+  filename: {
+    type: String,
+    unique: true,
+    required: true,
+  },
 });
 
 module.exports = mongoose.model("Media", MeidaSchema);

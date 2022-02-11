@@ -33,7 +33,7 @@ router.post("/single", checkAuth, upload.single("image"), async (req, res) => {
     }).save();
     res.status(201).json(file);
   } catch (err) {
-    res.status(400).json(err);
+    res.status(409).json(err);
   }
 });
 

@@ -54,6 +54,12 @@ export class ImagesComponent implements OnInit, OnDestroy {
     this.pluralImages = false;
   }
 
+  onDelete(): void {
+    this.checkedImages.forEach((image) => {});
+
+    this.checkedImages = [];
+  }
+
   ngOnDestroy(): void {
     this.subscription.unsubscribe();
   }
