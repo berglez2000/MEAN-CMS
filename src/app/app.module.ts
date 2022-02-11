@@ -22,6 +22,7 @@ import { PageItemComponent } from './components/global/cards/page-item/page-item
 import { CreatePageComponent } from './pages/admin/pages/create-page/create-page.component';
 import { EditPageComponent } from './pages/admin/pages/edit-page/edit-page.component';
 import { ImagesComponent } from './components/panel/sections/images/images.component';
+import { CreatePostComponent } from './pages/admin/posts/create-post/create-post.component';
 
 @NgModule({
   declarations: [
@@ -40,6 +41,7 @@ import { ImagesComponent } from './components/panel/sections/images/images.compo
     CreatePageComponent,
     EditPageComponent,
     ImagesComponent,
+    CreatePostComponent,
   ],
   imports: [
     BrowserModule,

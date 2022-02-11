@@ -8,6 +8,7 @@ import { PostsComponent } from './pages/admin/posts/posts.component';
 import { AuthGuard } from './guards/auth.guard';
 import { CreatePageComponent } from './pages/admin/pages/create-page/create-page.component';
 import { EditPageComponent } from './pages/admin/pages/edit-page/edit-page.component';
+import { CreatePostComponent } from './pages/admin/posts/create-post/create-post.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/admin', pathMatch: 'full' },
@@ -16,6 +17,7 @@ const routes: Routes = [
   { path: 'admin/pages', component: PagesComponent },
   { path: 'admin/media', component: MediaComponent },
   { path: 'admin/posts', component: PostsComponent },
+  { path: 'admin/posts/create-post', component: CreatePostComponent },
   { path: 'admin/pages/create-page', component: CreatePageComponent },
   { path: 'admin/pages/edit/:id', component: EditPageComponent },
 ];
