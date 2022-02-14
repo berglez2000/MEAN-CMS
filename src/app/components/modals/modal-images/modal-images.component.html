@@ -1,1 +1,15 @@
-<p>modal-images works!</p>
+<div class="modal-images">
+  <div class="loader d-flex justify-content-center" *ngIf="!isLoaded">
+    <app-spinner></app-spinner>
+  </div>
+  <div class="images-list" *ngIf="isLoaded && images.length > 0">
+    <div
+      *ngFor="let image of images"
+      class="image-item {{
+        image.checked ? 'checked' : ''
+      }} border border-3 border-secondary"
+      [ngStyle]="{ 'background-image': 'url(' + image.url + ')' }"
+      (click)="onClick(image)"
+    ></div>
+  </div>
+</div>

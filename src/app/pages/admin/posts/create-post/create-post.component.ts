@@ -10,6 +10,7 @@ export class CreatePostComponent implements OnInit {
   title: string = '';
   postContent: string = '';
   isLoading: boolean = false;
+  postImage: string = '';
 
   constructor(private modalService: NgbModal) {}
 

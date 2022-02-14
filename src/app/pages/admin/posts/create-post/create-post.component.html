@@ -41,12 +41,23 @@
                   />
                 </div>
                 <div class="mb-3">
+                  <p>Post Image</p>
                   <button
-                    class="btn btn-primary"
+                    class="btn btn-primary mb-3"
                     (click)="openWindowCustomClass(content)"
                   >
                     Add Image
                   </button>
+                  <div>
+                    <strong *ngIf="!postImage">No image</strong>
+                    <div
+                      class="image-preview"
+                      *ngIf="postImage"
+                      [ngStyle]="{
+                        'background-image': 'url(' + postImage + ')'
+                      }"
+                    ></div>
+                  </div>
                 </div>
                 <div class="mb-3">
                   <label for="content" class="form-label">Post Content</label>

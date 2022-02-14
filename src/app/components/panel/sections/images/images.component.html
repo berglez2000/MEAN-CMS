@@ -14,6 +14,7 @@
       Delete {{ pluralImages ? "Images" : "Image" }}
     </button>
   </div>
+  <strong *ngIf="isLoaded && images.length == 0">No images to show</strong>
   <div class="images-list" *ngIf="isLoaded && images.length > 0">
     <div
       *ngFor="let image of images"
