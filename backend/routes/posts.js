@@ -11,4 +11,18 @@ router.get("/", async (req, res) => {
   }
 });
 
+router.post("/", async (req, res) => {
+  try {
+    const newPost = new Post({
+      title: req.body.title,
+      image: req.body.image,
+      content: req.body.content,
+    });
+    const savedPost = await newPost.save();
+    res.status(201).json({ success: true, post: savedPost });
+  } catch (err) {
+    res.status(400).json(err);
+  }
+});
+
 module.exports = router;
