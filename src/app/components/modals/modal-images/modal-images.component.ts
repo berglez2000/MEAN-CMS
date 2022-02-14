@@ -32,6 +32,8 @@ export class ModalImagesComponent implements OnInit, OnDestroy {
     images.forEach((img) => (img.checked = false));
 
     image.checked = !image.checked;
+    const imageUrl: string = image.checked ? image.url : '';
+    this.mediaService.changeImage(imageUrl);
   }
 
   ngOnDestroy(): void {

@@ -13,6 +13,15 @@
   <div class="modal-body">
     <app-modal-images></app-modal-images>
   </div>
+  <div class="modal-footer">
+    <button
+      class="btn btn-success"
+      [disabled]="buttonDisabled"
+      (click)="onAddImage()"
+    >
+      Add Image
+    </button>
+  </div>
 </ng-template>
 <div class="admin">
   <div class="d-flex sidebar-parent">
