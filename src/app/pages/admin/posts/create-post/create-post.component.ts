@@ -74,6 +74,12 @@ export class CreatePostComponent implements OnInit, OnDestroy {
     return post;
   }
 
+  deleteContent(): void {
+    this.title = '',
+    this.postContent = '',
+    this.mediaService.changeImage('');
+  }
+
   onSavePost(): void {
     const isValid: boolean = this.validatePost();
     if(!isValid) return;
@@ -90,6 +96,8 @@ export class CreatePostComponent implements OnInit, OnDestroy {
       setTimeout(() => {
         this.router.navigate(['/admin/posts']);
       }, alert.time);
+
+      this.deleteContent();
     }, error => {
       const alert: Alert = {
         type: 'danger',
