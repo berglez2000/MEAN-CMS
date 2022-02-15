@@ -11,6 +11,7 @@ import { MediaService } from 'src/app/services/api/media/media.service';
 export class ModalImagesComponent implements OnInit, OnDestroy {
   private subscription: Subscription = new Subscription();
   images: Image[] = [];
+  currentImageUrl: string = '';
   isLoaded: boolean = false;
 
   constructor(private mediaService: MediaService) {}
@@ -20,7 +21,15 @@ export class ModalImagesComponent implements OnInit, OnDestroy {
       .getImages()
       .subscribe((images: Images) => {
         this.images = images.images;
-        this.images.forEach((image) => (image.checked = false));
+        this.currentImageUrl = this.mediaService.getImageUrl();
+        this.images.forEach((image) => {
+          if(image.url === this.currentImageUrl){
+            image.checked = true;
+          } else {
+            image.checked = false;
+          }
+        });
+
         this.isLoaded = true;
       });
   }

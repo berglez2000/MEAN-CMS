@@ -16,6 +16,7 @@ export class MediaService {
   private token: any;
   private imageSubject = new Subject<Image>();
   private chooseImageSubject = new Subject<string>();
+  private currentImageUrl!: string;
   private apiUrl: string = 'http://localhost:5000/api/media/';
 
   constructor(private http: HttpClient, private authService: AuthService) {}
@@ -61,7 +62,12 @@ export class MediaService {
   }
 
   changeImage(imageUrl: string): void {
-    this.chooseImageSubject.next(imageUrl);
+    this.currentImageUrl = imageUrl;
+    this.chooseImageSubject.next(this.currentImageUrl);
+  }
+
+  getImageUrl(): string {
+    return this.currentImageUrl;
   }
 
   onChangeImage(): Observable<string> {

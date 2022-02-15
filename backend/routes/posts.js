@@ -1,6 +1,7 @@
 const express = require("express");
 const router = express.Router();
 const Post = require("../models/Post");
+const checkAuth = require('../middleware/check-auth');
 
 router.get("/", async (req, res) => {
   try {
@@ -11,15 +12,15 @@ router.get("/", async (req, res) => {
   }
 });
 
-router.post("/", async (req, res) => {
+router.post("/", checkAuth, async (req, res) => {
   try {
     const newPost = new Post({
       title: req.body.title,
       image: req.body.image,
       content: req.body.content,
     });
-    const savedPost = await newPost.save();
-    res.status(201).json({ success: true, post: savedPost });
+    await newPost.save();
+    res.status(201).json({ success: true, msg: 'Post successfully added' });
   } catch (err) {
     res.status(400).json(err);
   }
