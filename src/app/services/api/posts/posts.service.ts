@@ -2,13 +2,14 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Post } from 'src/app/models/Post';
+import { ServerResponse } from 'src/app/models/ServerResponse';
 import { AuthService } from '../../auth/auth.service';
 
 let httpOptions = {
   headers: new HttpHeaders({
     'Content-Type': 'application/json',
   }),
-}
+};
 
 @Injectable({
   providedIn: 'root',
@@ -24,11 +25,22 @@ export class PostsService {
   }
 
   addPost(post: Post): Observable<Post> {
-    if(!this.token){
+    if (!this.token) {
       this.token = this.authService.getToken();
       const bearer: string = `Bearer ${this.token}`;
       httpOptions.headers = httpOptions.headers.append('Authorization', bearer);
     }
     return this.http.post<Post>(this.apiUrl, post, httpOptions);
+  }
+
+  deletePost(id: string): Observable<ServerResponse> {
+    const url: string = this.apiUrl + id;
+    if (!this.token) {
+      this.token = this.authService.getToken();
+      const bearer: string = `Bearer ${this.token}`;
+      httpOptions.headers = httpOptions.headers.append('Authorization', bearer);
+    }
+
+    return this.http.delete<ServerResponse>(url, httpOptions);
   }
 }
