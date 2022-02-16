@@ -1,6 +1,6 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import { Observable, Subject } from 'rxjs';
 import { Post } from 'src/app/models/Post';
 import { ServerResponse } from 'src/app/models/ServerResponse';
 import { AuthService } from '../../auth/auth.service';
@@ -16,6 +16,7 @@ let httpOptions = {
 })
 export class PostsService {
   private apiUrl: string = 'http://localhost:5000/api/posts/';
+  private postSubject = new Subject<any>();
   token: any;
 
   constructor(private http: HttpClient, private authService: AuthService) {}
@@ -40,7 +41,11 @@ export class PostsService {
       const bearer: string = `Bearer ${this.token}`;
       httpOptions.headers = httpOptions.headers.append('Authorization', bearer);
     }
-
+    this.postSubject.next(id);
     return this.http.delete<ServerResponse>(url, httpOptions);
+  }
+
+  onDeletePost(): Observable<any> {
+    return this.postSubject.asObservable();
   }
 }

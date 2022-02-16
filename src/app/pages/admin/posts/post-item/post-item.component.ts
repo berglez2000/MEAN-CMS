@@ -23,7 +23,8 @@ export class PostItemComponent implements OnInit {
     private alertService: AlertService
   ) {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+  }
 
   openBackDropCustomClass(content: any) {
     this.modalService.open(content, { backdropClass: 'light-blue-backdrop' });

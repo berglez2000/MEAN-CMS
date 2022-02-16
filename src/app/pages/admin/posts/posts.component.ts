@@ -22,6 +22,10 @@ export class PostsComponent implements OnInit, OnDestroy {
         this.posts = posts;
         this.isLoading = false;
       });
+
+      this.subscription = this.postsService.onDeletePost().subscribe((id: any) => {
+        this.posts = this.posts.filter(post => post._id !== id);
+      });
   }
 
   ngOnDestroy(): void {

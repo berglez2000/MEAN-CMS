@@ -25,6 +25,7 @@ import { ImagesComponent } from './components/panel/sections/images/images.compo
 import { CreatePostComponent } from './pages/admin/posts/create-post/create-post.component';
 import { ModalImagesComponent } from './components/modals/modal-images/modal-images.component';
 import { PostItemComponent } from './pages/admin/posts/post-item/post-item.component';
+import { EditPostComponent } from './pages/admin/posts/edit-post/edit-post.component';
 
 @NgModule({
   declarations: [
@@ -46,6 +47,7 @@ import { PostItemComponent } from './pages/admin/posts/post-item/post-item.compo
     CreatePostComponent,
     ModalImagesComponent,
     PostItemComponent,
+    EditPostComponent,
   ],
   imports: [
     BrowserModule,
