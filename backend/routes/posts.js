@@ -45,4 +45,18 @@ router.delete("/:id", checkAuth, async (req, res) => {
   }
 });
 
+router.patch("/:id", checkAuth, async (req, res) => {
+  try {
+    const post = {
+      title: req.body.title,
+      image: req.body.image,
+      content: req.body.content,
+    };
+    await Post.updateOne({ _id: req.params.id }, { $set: post });
+    res.status(201).json({ success: true, msg: "Post updated successfully" });
+  } catch (err) {
+    res.status(404).json(err);
+  }
+});
+
 module.exports = router;

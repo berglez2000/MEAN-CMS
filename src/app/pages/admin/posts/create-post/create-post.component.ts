@@ -6,7 +6,6 @@ import { AlertService } from 'src/app/services/alert/alert.service';
 import { Alert } from 'src/app/models/Alert';
 import { PostsService } from 'src/app/services/api/posts/posts.service';
 import { Post } from 'src/app/models/Post';
-import { ServerResponse } from 'src/app/models/ServerResponse';
 import { Router } from '@angular/router';
 
 @Component({
@@ -50,12 +49,12 @@ export class CreatePostComponent implements OnInit, OnDestroy {
   validatePost(): boolean {
     let isValid: boolean = true;
 
-    if(!this.title){
+    if (!this.title) {
       const alert: Alert = {
         type: 'warning',
         text: 'Please fill in the post title',
-        time: 2000
-      }
+        time: 2000,
+      };
 
       this.alertService.addAlert(alert);
       isValid = false;
@@ -68,45 +67,48 @@ export class CreatePostComponent implements OnInit, OnDestroy {
     const post: Post = {
       title: this.title,
       image: this.postImage,
-      content: this.postContent
-    }
+      content: this.postContent,
+    };
 
     return post;
   }
 
   deleteContent(): void {
-    this.title = '',
-    this.postContent = '',
-    this.mediaService.changeImage('');
+    (this.title = ''),
+      (this.postContent = ''),
+      this.mediaService.changeImage('');
   }
 
   onSavePost(): void {
     const isValid: boolean = this.validatePost();
-    if(!isValid) return;
+    if (!isValid) return;
     const post: Post = this.createPost();
-    this.subscription = this.postsService.addPost(post).subscribe(res => {
-      const alert: Alert = {
-        type: 'success',
-        text: 'Post added successfully',
-        time: 2000
+    this.subscription = this.postsService.addPost(post).subscribe(
+      (res) => {
+        const alert: Alert = {
+          type: 'success',
+          text: 'Post added successfully',
+          time: 2000,
+        };
+
+        this.alertService.addAlert(alert);
+
+        setTimeout(() => {
+          this.router.navigate(['/admin/posts']);
+        }, alert.time);
+
+        this.deleteContent();
+      },
+      (error) => {
+        const alert: Alert = {
+          type: 'danger',
+          text: 'an error has occurred',
+          time: 2000,
+        };
+
+        this.alertService.addAlert(alert);
       }
-
-      this.alertService.addAlert(alert);
-
-      setTimeout(() => {
-        this.router.navigate(['/admin/posts']);
-      }, alert.time);
-
-      this.deleteContent();
-    }, error => {
-      const alert: Alert = {
-        type: 'danger',
-        text: 'an error has occurred',
-        time: 2000
-      }
-
-      this.alertService.addAlert(alert);
-    });
+    );
   }
 
   onAddImage(): void {

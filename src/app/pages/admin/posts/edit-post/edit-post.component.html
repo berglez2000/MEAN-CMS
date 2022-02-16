@@ -31,7 +31,9 @@
     <div class="col">
       <div class="upper d-flex justify-content-between">
         <h3 class="posts-title" routerLink="/admin/posts/">Posts</h3>
-        <button class="btn btn-primary">Save Post</button>
+        <button class="btn btn-primary" (click)="onSavePost()">
+          Save Post
+        </button>
       </div>
       <hr />
       <div class="edit-post">
@@ -80,6 +82,7 @@
             </form>
           </div>
         </div>
+        <app-alert></app-alert>
       </div>
     </div>
   </div>

@@ -50,6 +50,19 @@ export class PostsService {
     return this.http.delete<ServerResponse>(url, httpOptions);
   }
 
+  updatePost(id: string, post: Post): Observable<ServerResponse> {
+    const url: string = this.apiUrl + id;
+    if (!this.token) {
+      this.token = this.authService.getToken();
+      const authString = `Bearer ${this.token}`;
+      httpOptions.headers = httpOptions.headers.append(
+        'Authorization',
+        authString
+      );
+    }
+    return this.http.patch<ServerResponse>(url, post, httpOptions);
+  }
+
   onDeletePost(): Observable<any> {
     return this.postSubject.asObservable();
   }
