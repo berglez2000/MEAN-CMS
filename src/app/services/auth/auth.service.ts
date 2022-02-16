@@ -4,6 +4,7 @@ import {
   HttpHeaders,
 } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { Router } from '@angular/router';
 import { Observable, Subject } from 'rxjs';
 import { ServerResponse } from 'src/app/models/ServerResponse';
 
@@ -22,7 +23,7 @@ export class AuthService {
   private authSubject = new Subject<boolean>();
   private apiUrl: string = 'http://localhost:5000/api/users/';
 
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient, private router: Router) {}
 
   verifyToken(): void {
     if (!this.token) {
@@ -69,5 +70,13 @@ export class AuthService {
   getToken(): any {
     this.token = localStorage.getItem('id_token');
     return this.token;
+  }
+
+  logOut(): void {
+    localStorage.removeItem('id_token');
+    this.isAuth = false;
+    this.token = null;
+    this.changeAuth(this.isAuth);
+    this.router.navigate(['/admin/login']);
   }
 }

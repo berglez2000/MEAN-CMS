@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { AuthService } from 'src/app/services/auth/auth.service';
 import {
   faHome,
   faColumns,
@@ -24,7 +25,11 @@ export class SidebarComponent implements OnInit {
     { label: 'Posts', route: '/admin/posts', icon: faFolderOpen },
   ];
 
-  constructor() {}
+  constructor(private authService: AuthService) {}
 
   ngOnInit(): void {}
+
+  onLogout(): void {
+    this.authService.logOut();
+  }
 }
