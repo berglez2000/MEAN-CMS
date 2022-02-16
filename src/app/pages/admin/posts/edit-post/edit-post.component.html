@@ -1,1 +1,86 @@
-<p>edit-post works!</p>
+<ng-template #content let-modal>
+  <div class="modal-header">
+    <h4 class="modal-title">Add Image</h4>
+    <button
+      type="button"
+      class="close"
+      aria-label="Close"
+      (click)="modal.dismiss('Cross click')"
+    >
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <app-modal-images></app-modal-images>
+  </div>
+  <div class="modal-footer">
+    <button
+      class="btn btn-success"
+      [disabled]="buttonDisabled"
+      (click)="onAddImage()"
+    >
+      Add Image
+    </button>
+  </div>
+</ng-template>
+<div class="admin">
+  <div class="d-flex sidebar-parent">
+    <app-sidebar></app-sidebar>
+  </div>
+  <div class="right mt-3">
+    <div class="col">
+      <div class="upper d-flex justify-content-between">
+        <h3 class="posts-title" routerLink="/admin/posts/">Posts</h3>
+        <button class="btn btn-primary">Save Post</button>
+      </div>
+      <hr />
+      <div class="edit-post">
+        <div class="card">
+          <div class="card-body">
+            <form>
+              <div class="mb-3">
+                <label for="title" class="form-label">Post Title</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  id="title"
+                  name="title"
+                  [(ngModel)]="title"
+                />
+              </div>
+              <div class="mb-3">
+                <p>Post Image</p>
+                <button
+                  class="btn btn-primary mb-3"
+                  (click)="openWindowCustomClass(content)"
+                >
+                  Add Image
+                </button>
+                <div>
+                  <strong *ngIf="!postImage">No image</strong>
+                  <div
+                    class="image-preview"
+                    *ngIf="postImage"
+                    [ngStyle]="{
+                      'background-image': 'url(' + postImage + ')'
+                    }"
+                  ></div>
+                </div>
+              </div>
+              <div class="mb-3">
+                <label for="content" class="form-label">Post Content</label>
+                <textarea
+                  class="form-control"
+                  id="postContent"
+                  rows="4"
+                  name="postContent"
+                  [(ngModel)]="postContent"
+                ></textarea>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

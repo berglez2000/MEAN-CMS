@@ -25,6 +25,11 @@ export class PostsService {
     return this.http.get<Post[]>(this.apiUrl);
   }
 
+  getPost(id: any): Observable<Post> {
+    const url: string = this.apiUrl + id;
+    return this.http.get<Post>(url);
+  }
+
   addPost(post: Post): Observable<Post> {
     if (!this.token) {
       this.token = this.authService.getToken();
