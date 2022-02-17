@@ -11,6 +11,7 @@ import { EditPageComponent } from './pages/admin/pages/edit-page/edit-page.compo
 import { CreatePostComponent } from './pages/admin/posts/create-post/create-post.component';
 import { EditPostComponent } from './pages/admin/posts/edit-post/edit-post.component';
 import { ComponentsComponent } from './pages/admin/components/components.component';
+import { CreateComponentComponent } from './pages/admin/components/create-component/create-component.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/admin', pathMatch: 'full' },
@@ -24,6 +25,10 @@ const routes: Routes = [
   { path: 'admin/pages/create-page', component: CreatePageComponent },
   { path: 'admin/pages/edit/:id', component: EditPageComponent },
   { path: 'admin/components', component: ComponentsComponent },
+  {
+    path: 'admin/components/create-component',
+    component: CreateComponentComponent,
+  },
 ];
 
 @NgModule({

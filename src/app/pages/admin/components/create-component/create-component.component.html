@@ -1,0 +1,51 @@
+<div class="admin">
+  <div class="d-flex sidebar-parent">
+    <app-sidebar></app-sidebar>
+  </div>
+  <div class="right mt-3">
+    <div class="col">
+      <div class="upper d-flex justify-content-between">
+        <h3 class="component-title" routerLink="/admin/components/">
+          Components
+        </h3>
+        <button class="btn btn-primary" (click)="onSubmit()">
+          Save Component
+        </button>
+      </div>
+      <hr />
+      <div class="components">
+        <div class="add-component">
+          <div class="card">
+            <div class="card-body">
+              <form>
+                <div class="mb-3">
+                  <label for="title" class="form-label">Name</label>
+                  <input
+                    type="text"
+                    class="form-control"
+                    id="name"
+                    name="name"
+                    [(ngModel)]="name"
+                  />
+                </div>
+                <div class="mb-3">
+                  <p>Add Fields</p>
+                  <button class="btn btn-primary" (click)="onAddField()">
+                    <fa-icon [icon]="faPlus"></fa-icon>
+                  </button>
+                </div>
+              </form>
+            </div>
+          </div>
+          <div
+            class="loader d-flex justify-content-center mt-3"
+            *ngIf="isLoading"
+          >
+            <app-spinner></app-spinner>
+          </div>
+          <app-alert></app-alert>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
