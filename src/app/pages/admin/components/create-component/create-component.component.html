@@ -28,6 +28,13 @@
                     [(ngModel)]="name"
                   />
                 </div>
+                <div class="mb-3" *ngIf="ourFields.length > 0">
+                  <div class="fields">
+                    <app-component-field
+                      *ngFor="let field of ourFields"
+                    ></app-component-field>
+                  </div>
+                </div>
                 <div class="mb-3">
                   <p>Add Fields</p>
                   <button class="btn btn-primary" (click)="onAddField()">

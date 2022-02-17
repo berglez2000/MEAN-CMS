@@ -12,12 +12,15 @@ export class CreateComponentComponent implements OnInit {
   name: string = '';
   faPlus = faPlus;
   fields: Field[] = FIELDS;
+  ourFields: Field[] = [];
 
   constructor() {}
 
   ngOnInit(): void {}
 
-  onAddField(): void {}
+  onAddField(): void {
+    this.ourFields.push(this.fields[0]);
+  }
 
   onSubmit(): void {}
 }

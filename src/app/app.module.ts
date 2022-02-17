@@ -28,6 +28,7 @@ import { PostItemComponent } from './pages/admin/posts/post-item/post-item.compo
 import { EditPostComponent } from './pages/admin/posts/edit-post/edit-post.component';
 import { ComponentsComponent } from './pages/admin/components/components.component';
 import { CreateComponentComponent } from './pages/admin/components/create-component/create-component.component';
+import { ComponentFieldComponent } from './components/global/cards/component-field/component-field.component';
 
 @NgModule({
   declarations: [
@@ -52,6 +53,7 @@ import { CreateComponentComponent } from './pages/admin/components/create-compon
     EditPostComponent,
     ComponentsComponent,
     CreateComponentComponent,
+    ComponentFieldComponent,
   ],
   imports: [
     BrowserModule,
