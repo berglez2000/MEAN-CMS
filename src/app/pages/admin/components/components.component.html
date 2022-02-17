@@ -1,0 +1,27 @@
+<div class="admin">
+  <div class="d-flex sidebar-parent">
+    <app-sidebar></app-sidebar>
+  </div>
+  <div class="right mt-3">
+    <div class="col">
+      <div class="upper d-flex justify-content-between">
+        <h3>Components</h3>
+        <button class="btn btn-primary" routerLink="/admin/pages/create-page">
+          Add Component
+        </button>
+      </div>
+      <hr />
+      <div class="components">
+        <div class="component-list" *ngIf="!isLoading">
+          <strong *ngIf="components.length == 0">No components</strong>
+        </div>
+        <div
+          class="loader d-flex justify-content-center mt-3"
+          *ngIf="isLoading"
+        >
+          <app-spinner></app-spinner>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

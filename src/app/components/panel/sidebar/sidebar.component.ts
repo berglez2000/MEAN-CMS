@@ -6,6 +6,7 @@ import {
   faImages,
   faFolderOpen,
 } from '@fortawesome/free-solid-svg-icons';
+import { faConnectdevelop } from '@fortawesome/free-brands-svg-icons';
 import { NavItem } from 'src/app/models/NavItem';
 
 @Component({
@@ -18,11 +19,13 @@ export class SidebarComponent implements OnInit {
   faColumns = faColumns;
   faImages = faImages;
   faFolderOpen = faFolderOpen;
+  faConnectDevelop = faConnectdevelop;
   navItems: NavItem[] = [
     { label: 'Dashboard', route: '/admin', icon: faHome },
     { label: 'Pages', route: '/admin/pages', icon: faColumns },
     { label: 'Media', route: '/admin/media', icon: faImages },
     { label: 'Posts', route: '/admin/posts', icon: faFolderOpen },
+    { label: 'Components', route: '/admin/components', icon: faConnectdevelop },
   ];
 
   constructor(private authService: AuthService) {}
