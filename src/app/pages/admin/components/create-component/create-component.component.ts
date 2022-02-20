@@ -9,7 +9,7 @@ import { Field, FIELDS } from 'src/app/models/Field';
 })
 export class CreateComponentComponent implements OnInit {
   isLoading: boolean = false;
-  name: string = '';
+  componentName: string = '';
   faPlus = faPlus;
   fields: Field[] = FIELDS;
   ourFields: Field[] = [];

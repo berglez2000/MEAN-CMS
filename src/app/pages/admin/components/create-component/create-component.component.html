@@ -19,13 +19,15 @@
             <div class="card-body">
               <form>
                 <div class="mb-3">
-                  <label for="title" class="form-label">Name</label>
+                  <label for="componentName" class="form-label"
+                    >Component Name</label
+                  >
                   <input
                     type="text"
                     class="form-control"
-                    id="name"
-                    name="name"
-                    [(ngModel)]="name"
+                    id="componentName"
+                    name="componentName"
+                    [(ngModel)]="componentName"
                   />
                 </div>
                 <div class="mb-3" *ngIf="ourFields.length > 0">
@@ -36,7 +38,7 @@
                   </div>
                 </div>
                 <div class="mb-3">
-                  <p>Add Fields</p>
+                  <p>Add Field</p>
                   <button class="btn btn-primary" (click)="onAddField()">
                     <fa-icon [icon]="faPlus"></fa-icon>
                   </button>
